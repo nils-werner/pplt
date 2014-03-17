@@ -37,7 +37,10 @@ def main(argv):
     if len(argv) == 0:
         pass
     else:
-        args = None
+        if len(argv) >= 2:
+            args = tuple(argv[1:])
+        else:
+            args = None
 
         if argv[0] in aliases:
             item = aliases[argv[0]]
@@ -58,7 +61,7 @@ def main(argv):
             sys.exit(1)
 
         if args is not None:
-            f = module.main(plt, args)
+            f = module.main(plt, *args)
         else:
             f = module.main(plt)
         f.tight_layout()
