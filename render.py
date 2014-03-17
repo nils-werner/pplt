@@ -30,24 +30,37 @@ def main(argv):
               'figure.figsize': fig_size}
     plt.rcParams.update(params)
 
-    funcs = {
-        "logspectrogram.pdf": "logspec",
+    aliases = {
+        "alias.pdf": "logspec",
     }
 
     if len(argv) == 0:
         pass
     else:
-        if argv[0] in funcs:
-            name = funcs[argv[0]]
+        args = None
+
+        if argv[0] in aliases:
+            item = aliases[argv[0]]
+            if type(item) is tuple:
+                name = item[0]
+                args = item[1:]
+            else:
+                name = item
+
+            print name, args
         else:
             name = os.path.splitext(argv[0])[0]
+
         try:
             module = __import__('render_modules.' + name, globals(), locals(), name)
         except:
             print("No module %s found" % name)
             sys.exit(1)
-        f = module.run(plt)
 
+        if args is not None:
+            f = module.main(plt, args)
+        else:
+            f = module.main(plt)
         f.tight_layout()
         f.savefig(argv[0])
 

@@ -2,7 +2,7 @@ from . import properties
 from scipy import signal
 import numpy
 
-def run(plt):
+def main(plt):
     def expsig(t):
         return ( 1 - numpy.exp(- (signal.sawtooth(2.0 * t) + 1.0) / 2.0 *10.0) ) * signal.square(t)
 

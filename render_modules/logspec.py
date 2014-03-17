@@ -2,7 +2,7 @@ from . import properties
 import numpy
 
 
-def run(plt):
+def main(plt):
     t = numpy.arange(10000)
     s = lambda t: numpy.sin(t * 2 * numpy.pi * 440 / 1000000)
 
