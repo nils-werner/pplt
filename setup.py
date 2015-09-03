@@ -22,10 +22,15 @@ setup(
             'sphinx_rtd_theme',
             'numpydoc',
         ],
+        'tests': [
+            'pytest',
+            'pytest-cov',
+            'pytest-pep8',
+        ],
     },
     entry_points={
         'console_scripts': [
-            'pplt = paper_plt.main:main',
+            'pplt = paper_plt:main',
         ]
     },
     classifiers=[
