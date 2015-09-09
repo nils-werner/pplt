@@ -34,6 +34,7 @@ def render(
     tight_layout=True,
     columnwidth=244.6937,
     file_object=None,
+    stylesheet=None,
 ):
     if rc_params is None:
         rc_params = {}
@@ -48,6 +49,8 @@ def render(
         file_object = name
 
     plt.rcdefaults()
+    if stylesheet:
+        plt.style.use(stylesheet)
     plt.rc('text', usetex=True)
     plt.rc('font', family='serif')
 
@@ -91,8 +94,6 @@ def render(
     else:
         f = module.main(plt)
 
-    print f
-
     if type(f) is tuple:
         f, art = f
 
@@ -120,12 +121,17 @@ def main(args=None):
         '--prefix', '-P', default="pplt", help='Import prefix',
     )
     parser.add_argument(
+        '--stylesheet', '-s', help='Matplotlib Stylesheet', nargs='?',
+    )
+    parser.add_argument(
         'out', help='Output filename',
     )
     parser.add_argument(
         'arguments', nargs='*', help='Renderer Arguments. Optional.',
     )
     args = parser.parse_args(args)
+    if args.stylesheet:
+        args.stylesheet = args.stylesheet.split(',')
 
     sys.path.append(os.getcwd())
     try:
@@ -145,6 +151,7 @@ def main(args=None):
             aliases=conf.aliases,
             tight_layout=conf.tight_layout,
             columnwidth=conf.columnwidth,
+            stylesheet=args.stylesheet,
         )
     except ImportError:
         print "Could not import %s.%s" % (
