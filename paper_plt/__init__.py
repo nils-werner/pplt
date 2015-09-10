@@ -35,13 +35,8 @@ def render(
     columnwidth=244.6937,
     file_object=None,
     stylesheet=None,
+    local_rc=True,
 ):
-    if rc_params is None:
-        rc_params = {}
-
-    if sns_params is None:
-        sns_params = {}
-
     if aliases is None:
         aliases = {}
 
@@ -66,10 +61,12 @@ def render(
         'font.size': 9,
         'figure.figsize': fig_size(columnwidth)
     })
-    plt.rcParams.update(rc_params)
+    if rc_params:
+        plt.rcParams.update(rc_params)
 
     sns.set(font='serif')
-    sns.set(*sns_params)
+    if sns_params:
+        sns.set(**sns_params)
 
     basename = os.path.splitext(os.path.basename(name))[0]
 
@@ -87,6 +84,17 @@ def render(
     module = __import__(
         '%s.%s' % (prefix, basename), globals(), locals(), basename
     )
+
+    if local_rc:
+        try:
+            plt.rcParams.update(module.rc_params)
+        except AttributeError:
+            pass
+
+        try:
+            sns.set(**module.sns_params)
+        except AttributeError:
+            pass
 
     art = tuple()
     if args is not None:

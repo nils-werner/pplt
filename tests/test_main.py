@@ -18,6 +18,11 @@ def test_params():
     os.remove("params.pdf")
 
 
+def test_rc():
+    paper_plt.main(["rc.pdf"])
+    os.remove("rc.pdf")
+
+
 def test_failing():
     with pytest.raises(SystemExit):
         paper_plt.main(["fail.pdf"])

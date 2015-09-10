@@ -3,14 +3,8 @@ Configuration
 
 You may set the following values in a :code:`pplt/conf.py` file:
 
-.. py:attribute :: columnwidth
-
-the width of your columns. You may resize the figure in LaTeX later on, but
-the resulting text size depends on a correct setting.
-
-.. code:: python
-
-    columnwidth = 244.6937  # Get this from LaTeX using \showthe\columnwidth
+Processing
+----------
 
 .. py:attribute :: aliases
 
@@ -28,6 +22,18 @@ are values passed to :code:`main()`
         "logspec_synth":    ("logspec", "synth"),   # logspec.main("synth")
     }
 
+Styling
+-------
+
+.. py:attribute :: columnwidth
+
+the width of your columns. You may resize the figure in LaTeX later on, but
+the resulting text size depends on a correct setting.
+
+.. code:: python
+
+    columnwidth = 244.6937  # Get this from LaTeX using \showthe\columnwidth
+
 .. py:attribute :: rc_params
 
 A dictionary of values passed on to :code:`plt.rcParams.update()`
@@ -43,6 +49,8 @@ A dictionary of values passed on to :code:`plt.rcParams.update()`
         'text.usetex': True,
     }
 
+.. seealso:: Defining per-module RC settings :ref:`rc_params`
+
 .. py:attribute :: sns_params
 
 A dictionary of values passed on to :code:`sns.set()`
@@ -52,6 +60,8 @@ A dictionary of values passed on to :code:`sns.set()`
     sns_params = {
         'font': 'serif',
     }
+
+.. seealso:: Defining per-module RC settings :ref:`rc_params`
 
 .. py:attribute :: tight_layout
 

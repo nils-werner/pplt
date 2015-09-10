@@ -18,6 +18,20 @@ def test_params():
     os.remove("params.pdf")
 
 
+def test_rc_callback():
+    paper_plt.render("rc.pdf")
+    os.remove("rc.pdf")
+
+
+def test_rc_dicts():
+    paper_plt.render(
+        "blank.pdf",
+        rc_params={'font.size': 9},
+        sns_params={'font': 'serif'}
+    )
+    os.remove("blank.pdf")
+
+
 def test_failing():
     with pytest.raises(ImportError):
         paper_plt.render("fail.pdf")
