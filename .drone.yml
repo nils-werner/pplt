@@ -1,4 +1,4 @@
-image: drone/scipy:2.7-pip
+image: drone/latex
 script: 
     - pip install -e .[docs,tests]
     - py.test
