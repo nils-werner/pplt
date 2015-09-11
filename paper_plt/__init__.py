@@ -108,7 +108,8 @@ def render(
     if type(f) is tuple:
         f, art = f
 
-    f.set_tight_layout(tight_layout)
+    if tight_layout:
+        f.tight_layout()
     f.savefig(file_object, bbox_extra_artists=art, bbox_inches='tight')
 
 
