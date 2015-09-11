@@ -8,6 +8,8 @@ import os
 import sys
 import numpy
 import argparse
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -37,6 +39,7 @@ def render(
     stylesheet=None,
     local_rc=True,
 ):
+
     if aliases is None:
         aliases = {}
 
