@@ -8,7 +8,7 @@ setup(
     description='A simple matplotlib renderer for rendering plots from the commandline',
     author='Nils Werner',
     author_email='nils.werner@audiolabs-erlangen.com',
-    packages=find_packages(),
+    packages=['paper_plt'],
     install_requires=[
         'numpy',
         'scipy',
