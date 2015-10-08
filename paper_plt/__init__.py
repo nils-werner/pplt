@@ -19,6 +19,7 @@ defaults = {
     "rc_params": {},
     "sns_params": {},
     "tight_layout": True,
+    "stylesheet": None,
 }
 
 
@@ -47,8 +48,10 @@ def render(
         file_object = name
 
     plt.rcdefaults()
+
     if stylesheet:
         plt.style.use(stylesheet)
+
     plt.rc('text', usetex=True)
     plt.rc('font', family='serif')
 
@@ -99,6 +102,16 @@ def render(
         except AttributeError:
             pass
 
+        try:
+            plt.style.use(module.stylesheet)
+        except AttributeError:
+            pass
+
+        try:
+            module.pre_hook(plt)
+        except AttributeError:
+            pass
+
     art = tuple()
     if args is not None:
         f = module.main(plt, *args)
@@ -111,6 +124,11 @@ def render(
     if tight_layout:
         f.tight_layout()
     f.savefig(file_object, bbox_extra_artists=art, bbox_inches='tight')
+
+    try:
+        module.post_hook(plt)
+    except AttributeError:
+        pass
 
 
 def fig_size(columnwidth):
@@ -133,17 +151,12 @@ def main(args=None):
         '--prefix', '-P', default="pplt", help='Import prefix',
     )
     parser.add_argument(
-        '--stylesheet', '-s', help='Matplotlib Stylesheet', nargs='?',
-    )
-    parser.add_argument(
         'out', help='Output filename',
     )
     parser.add_argument(
         'arguments', nargs='*', help='Renderer Arguments. Optional.',
     )
     args = parser.parse_args(args)
-    if args.stylesheet:
-        args.stylesheet = args.stylesheet.split(',')
 
     sys.path.append(os.getcwd())
     try:
@@ -163,7 +176,7 @@ def main(args=None):
             aliases=conf.aliases,
             tight_layout=conf.tight_layout,
             columnwidth=conf.columnwidth,
-            stylesheet=args.stylesheet,
+            stylesheet=conf.stylesheet,
         )
     except ImportError:
         print "Could not import %s.%s" % (

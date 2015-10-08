@@ -23,6 +23,16 @@ def test_rc():
     os.remove("rc.pdf")
 
 
+def test_style():
+    paper_plt.main(["style.pdf"])
+    os.remove("style.pdf")
+
+
+def test_hooks():
+    paper_plt.main(["hooks.pdf"])
+    os.remove("hooks.pdf")
+
+
 def test_failing():
     with pytest.raises(SystemExit):
         paper_plt.main(["fail.pdf"])

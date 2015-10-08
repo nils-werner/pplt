@@ -6,3 +6,6 @@ sns_params = {
 rc_params = {
     'font.size': 9,
 }
+
+
+stylesheet = 'grayscale'

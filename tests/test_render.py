@@ -18,9 +18,19 @@ def test_params():
     os.remove("params.pdf")
 
 
-def test_rc_callback():
+def test_rc():
     paper_plt.render("rc.pdf")
     os.remove("rc.pdf")
+
+
+def test_style():
+    paper_plt.render("style.pdf")
+    os.remove("style.pdf")
+
+
+def test_hooks():
+    paper_plt.render("hooks.pdf")
+    os.remove("hooks.pdf")
 
 
 def test_rc_dicts():

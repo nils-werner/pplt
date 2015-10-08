@@ -34,9 +34,14 @@ Your function may return the figure alongside a list/tuple of additional artists
 RC Settings
 -----------
 
-Your module may define additional RC settings for Matplotlib and Seaborn.
+Your module may define additional RC settings for Matplotlib and Seaborn as 
+well as set a :code:`stylesheet` and a :code:`pre_hook` and a :code:`post_hook`
+which will run before and after the plotting.
+
 
 .. code:: python
+
+    from contextlib import contextmanager
 
     def main(plt):
         f, ax = plt.subplots(1, 1, figsize=(6, 2))
@@ -56,4 +61,16 @@ Your module may define additional RC settings for Matplotlib and Seaborn.
         'font.size': 9,
     }
 
-.. seealso:: Global RC settings in :code:`conf.py`: :py:attr:`rc_params`, :py:attr:`sns_params`
+
+    stylesheet = 'grayscale'
+
+
+    def pre_hook(plt):
+        plt.style.use('grayscale')
+
+
+    def post_hook(plt):
+        pass
+
+
+.. seealso:: Global RC settings in :code:`conf.py`: :py:attr:`rc_params`, :py:attr:`sns_params`,  :py:attr:`stylesheet`

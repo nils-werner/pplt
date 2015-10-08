@@ -25,6 +25,16 @@ are values passed to :code:`main()`
 Styling
 -------
 
+.. py:attribute :: stylesheet
+
+The Matplotlib style you wish to use. Use :code:`plt.style.available` to see
+what styles you have available.
+
+.. code:: python
+
+    >>> plt.style.available
+    [u'dark_background', u'bmh', u'grayscale', u'ggplot', u'fivethirtyeight']
+
 .. py:attribute :: columnwidth
 
 the width of your columns. You may resize the figure in LaTeX later on, but
