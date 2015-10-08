@@ -1,5 +1,6 @@
 image: drone/latex
 script: 
+    - pip install "setuptools>=17.1"
     - pip install -e .[docs,tests]
     - pip list
     - py.test
