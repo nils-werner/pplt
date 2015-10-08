@@ -70,7 +70,6 @@ def render(
     if rc_params:
         plt.rcParams.update(rc_params)
 
-    sns.set(font='serif')
     if sns_params:
         sns.set(**sns_params)
 
