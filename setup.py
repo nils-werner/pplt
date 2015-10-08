@@ -12,7 +12,7 @@ setup(
     install_requires=[
         'numpy',
         'scipy',
-        'matplotlib',
+        'matplotlib>=1.4.0',
         'seaborn>=0.6.0',
     ],
     extras_require={
