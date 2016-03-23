@@ -157,7 +157,7 @@ def main(args=None):
     )
     args = parser.parse_args(args)
 
-    sys.path.append(os.getcwd())
+    sys.path.insert(0, os.getcwd())
     try:
         conf = __import__('%s.conf' % args.prefix, globals(), locals(), 'conf')
     except ImportError:
