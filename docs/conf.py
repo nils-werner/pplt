@@ -33,8 +33,7 @@ import sphinx_rtd_theme
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.pngmath',
-    'sphinx.ext.autosummary',
-    'numpydoc'
+    'sphinx.ext.autosummary'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
