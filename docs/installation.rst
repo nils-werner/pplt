@@ -3,7 +3,7 @@ Installation
 
 .. code:: bash
 
-    pip install pplt
+    pip install git+https://github.com/nils-werner/pplt.git
 
 
 Setup
@@ -44,6 +44,6 @@ changed.
     fig/%.pdf: pplt/%.py
 	    pplt $@
 
-    # Build plots when building paper.pdf 
+    # Build plots when building paper.pdf
     paper.pdf: fig/input_signal.pdf fig/result_plots.pdf
         latex paper.tex

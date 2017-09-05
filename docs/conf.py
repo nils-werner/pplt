@@ -33,7 +33,6 @@ import sphinx_rtd_theme
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.pngmath',
-    'sphinxcontrib.napoleon',
     'sphinx.ext.autosummary',
     'numpydoc'
 ]
