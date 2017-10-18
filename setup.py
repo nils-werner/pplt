@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='paper_plt',
-    version='0.1',
+    version='0.2',
     description='A simple matplotlib renderer for rendering plots from the commandline',
     author='Nils Werner',
     author_email='nils.werner@audiolabs-erlangen.com',
@@ -14,6 +14,7 @@ setup(
         'scipy',
         'matplotlib>=1.4.0',
         'seaborn>=0.6.0',
+        'savefig',
     ],
     extras_require={
         'docs': [

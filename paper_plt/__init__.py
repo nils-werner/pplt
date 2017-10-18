@@ -4,14 +4,18 @@
 LaTeX figure rendering framework
 
 """
+
+from __future__ import division, absolute_import, print_function
 import os
 import sys
 import numpy
 import argparse
+import importlib
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 
 defaults = {
     "columnwidth": 244.6937,
@@ -86,9 +90,7 @@ def render(
     except AttributeError:
         pass
 
-    module = __import__(
-        '%s.%s' % (prefix, basename), globals(), locals(), basename
-    )
+    module = importlib.import_module('%s.%s' % (prefix, basename))
 
     if local_rc:
         try:
@@ -159,7 +161,7 @@ def main(args=None):
 
     sys.path.insert(0, os.getcwd())
     try:
-        conf = __import__('%s.conf' % args.prefix, globals(), locals(), 'conf')
+        conf = importlib.import_module('%s.conf' % args.prefix)
     except ImportError:
         conf = empty()
 
@@ -178,8 +180,8 @@ def main(args=None):
             stylesheet=conf.stylesheet,
         )
     except ImportError:
-        print "Could not import %s.%s" % (
+        print("Could not import %s.%s" % (
             args.prefix,
             os.path.splitext(os.path.basename(args.out))[0]
-        )
+        ))
         sys.exit(1)
