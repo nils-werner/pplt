@@ -132,11 +132,13 @@ def render(
         pass
 
 
-def fig_size(columnwidth):
+def fig_size(columnwidth, height_ratio=None):
     inches_per_pt = 1.0 / 72.27               # Convert pt to inch
     golden_mean = (numpy.sqrt(5) - 1.0) / 2.0  # Aesthetic ratio
     fig_width = columnwidth * inches_per_pt   # width in inches
-    fig_height = fig_width * golden_mean      # height in inches
+    if height_ratio is None:
+        height_ratio = golden_mean
+    fig_height = fig_width * height_ratio      # height in inches
     return numpy.array([fig_width, fig_height])
 
 
